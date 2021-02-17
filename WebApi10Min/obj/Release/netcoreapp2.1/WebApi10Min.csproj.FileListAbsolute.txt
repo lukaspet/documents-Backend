@@ -1,0 +1,14 @@
+C:\Users\lspetic\source\repos\WebApi10Min\WebApi10Min\bin\Release\netcoreapp2.1\WebApi10Min.deps.json
+C:\Users\lspetic\source\repos\WebApi10Min\WebApi10Min\bin\Release\netcoreapp2.1\WebApi10Min.runtimeconfig.json
+C:\Users\lspetic\source\repos\WebApi10Min\WebApi10Min\bin\Release\netcoreapp2.1\WebApi10Min.runtimeconfig.dev.json
+C:\Users\lspetic\source\repos\WebApi10Min\WebApi10Min\bin\Release\netcoreapp2.1\WebApi10Min.dll
+C:\Users\lspetic\source\repos\WebApi10Min\WebApi10Min\bin\Release\netcoreapp2.1\WebApi10Min.pdb
+C:\Users\lspetic\source\repos\WebApi10Min\WebApi10Min\obj\Release\netcoreapp2.1\WebApi10Min.csprojAssemblyReference.cache
+C:\Users\lspetic\source\repos\WebApi10Min\WebApi10Min\obj\Release\netcoreapp2.1\WebApi10Min.csproj.CoreCompileInputs.cache
+C:\Users\lspetic\source\repos\WebApi10Min\WebApi10Min\obj\Release\netcoreapp2.1\WebApi10Min.RazorAssemblyInfo.cache
+C:\Users\lspetic\source\repos\WebApi10Min\WebApi10Min\obj\Release\netcoreapp2.1\WebApi10Min.RazorAssemblyInfo.cs
+C:\Users\lspetic\source\repos\WebApi10Min\WebApi10Min\obj\Release\netcoreapp2.1\WebApi10Min.AssemblyInfoInputs.cache
+C:\Users\lspetic\source\repos\WebApi10Min\WebApi10Min\obj\Release\netcoreapp2.1\WebApi10Min.AssemblyInfo.cs
+C:\Users\lspetic\source\repos\WebApi10Min\WebApi10Min\obj\Release\netcoreapp2.1\WebApi10Min.RazorTargetAssemblyInfo.cache
+C:\Users\lspetic\source\repos\WebApi10Min\WebApi10Min\obj\Release\netcoreapp2.1\WebApi10Min.dll
+C:\Users\lspetic\source\repos\WebApi10Min\WebApi10Min\obj\Release\netcoreapp2.1\WebApi10Min.pdb
