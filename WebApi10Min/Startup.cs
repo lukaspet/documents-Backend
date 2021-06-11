@@ -59,9 +59,11 @@ namespace WebApi10Min
                         ValidateIssuer = true,
                         ValidateAudience = true,
                         ValidateLifetime = true,
+                        //ValidIssuer = "http://10.1.3.30:59695/",
                         ValidIssuer = "http://localhost:59695/",
                         //ValidIssuer = "http://10.1.100.50:59695/",
                         ClockSkew = TimeSpan.Zero,
+                        //ValidAudience = "http://10.1.3.30:59695/",
                         ValidAudience = "http://localhost:59695/",
                         //ValidAudience = "http://10.1.100.50:59695/",
                     };

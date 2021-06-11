@@ -127,8 +127,39 @@ namespace WebApi10Min.Controllers
             }
             int p = (SearchDocument.CurrentPage * 20) - 20; 
             totalCount = document.Count();
-            document = document.OrderByDescending(x => x.DataDocumento).Skip(p).Take(20).ToList();
-            
+            if (SearchDocument.SortColumn != null && SearchDocument.SortDirection != null)
+            {
+                switch (SearchDocument.SortColumn)
+                {
+                    case "dataScadenza":
+                        if (SearchDocument.SortDirection == "asc")
+                        {
+                            document = document.OrderBy(x => x.DataScadenza).Skip(p).Take(20).ToList();
+                        }
+                        else
+                        {
+                            document = document.OrderByDescending(x => x.DataScadenza).Skip(p).Take(20).ToList();
+                        }
+                        break;
+                    case "dataDocumento":
+                        if (SearchDocument.SortDirection == "asc")
+                        {
+                            document = document.OrderBy(x => x.DataDocumento).Skip(p).Take(20).ToList();
+                        }
+                        else
+                        {
+                            document = document.OrderByDescending(x => x.DataDocumento).Skip(p).Take(20).ToList();
+                        }
+                        break;
+                    default:
+                        document = document.OrderByDescending(x => x.DataDocumento).Skip(p).Take(20).ToList();
+                        break;
+                }
+            } 
+            else
+            {
+                document = document.OrderByDescending(x => x.DataDocumento).Skip(p).Take(20).ToList();
+            }
             Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(totalCount));
             return Ok(document);
         }
@@ -181,8 +212,8 @@ namespace WebApi10Min.Controllers
             }
             _context.Document.Add(document);
             await _context.SaveChangesAsync();
-
-            if (file != null)
+            Console.WriteLine(document);
+            if (file != null) // save one file
             {
                 string uploadFolder = Path.Combine(_hostingEnvironment.WebRootPath, "Uploads");
                 uniqueFileName = Guid.NewGuid().ToString();
@@ -210,7 +241,7 @@ namespace WebApi10Min.Controllers
                 _context.DocFile.Add(df);
                 await _context.SaveChangesAsync();
             }
-            if (files != null && files.Count > 0)
+            if (files != null && files.Count > 0) // save many files
             {
                 int count=2;
                 foreach (IFormFile onefile in files)

@@ -15,6 +15,7 @@ namespace WebApi10Min.Models
         public string DescrizioneDocumento { get; set; }
         public DateTime DataDocumento { get; set; }
         public DateTime DataArchivio { get; set; }
+        public DateTime? DataScadenza { get; set; }
         public string Cartella { get; set; }
         public string PosizioneCartella { get; set; }
         public string Note { get; set; }

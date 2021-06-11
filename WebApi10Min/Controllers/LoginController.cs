@@ -61,7 +61,6 @@ namespace WebApi10Min.Controllers
 
             ReturnUrl = returnUrl;
         }
-
         [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> OnPostAsync([FromBody] LoginDto model)

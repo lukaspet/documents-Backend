@@ -130,6 +130,10 @@ namespace WebApi10Min.Models
                     .HasColumnName("note")
                     .HasColumnType("longtext");
 
+                entity.Property(e => e.DataScadenza)
+                    .HasColumnName("data_scadenza")
+                    .HasColumnType("date");
+
                 entity.Property(e => e.Parte2Id)
                     .HasColumnName("parte2_id")
                     .HasDefaultValueSql("'0'");
