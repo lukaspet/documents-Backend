@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
 using WebApi10Min.Helpers;
 using WebApi10Min.Models;
@@ -212,7 +211,6 @@ namespace WebApi10Min.Controllers
             }
             _context.Document.Add(document);
             await _context.SaveChangesAsync();
-            Console.WriteLine(document);
             if (file != null) // save one file
             {
                 string uploadFolder = Path.Combine(_hostingEnvironment.WebRootPath, "Uploads");

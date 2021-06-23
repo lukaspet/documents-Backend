@@ -13,5 +13,6 @@ namespace WebApi10Min.Models
         public string Message { get; set; }
         public string EventType { get; set; }
         public string Url { get; set; }
+        public DateTime? DatetimeInsert { get; set; }
     }
 }

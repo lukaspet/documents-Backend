@@ -25,6 +25,7 @@ namespace WebApi10Min.Models
         public virtual DbSet<Societa> Societa { get; set; }
         public virtual DbSet<Sottocategoria> Sottocategoria { get; set; }
         public virtual DbSet<Ufficio> Ufficio { get; set; }
+        public virtual DbSet<UserSubscribe> UserSubscribe { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -122,6 +123,10 @@ namespace WebApi10Min.Models
                     .HasColumnName("data_documento")
                     .HasColumnType("datetime");
 
+                entity.Property(e => e.DataScadenza)
+                    .HasColumnName("data_scadenza")
+                    .HasColumnType("date");
+
                 entity.Property(e => e.DescrizioneDocumento)
                     .HasColumnName("descrizione_documento")
                     .HasColumnType("longtext");
@@ -129,10 +134,6 @@ namespace WebApi10Min.Models
                 entity.Property(e => e.Note)
                     .HasColumnName("note")
                     .HasColumnType("longtext");
-
-                entity.Property(e => e.DataScadenza)
-                    .HasColumnName("data_scadenza")
-                    .HasColumnType("date");
 
                 entity.Property(e => e.Parte2Id)
                     .HasColumnName("parte2_id")
@@ -232,6 +233,11 @@ namespace WebApi10Min.Models
                     .HasColumnName("datetime_frontend")
                     .HasColumnType("datetime");
 
+                entity.Property(e => e.DatetimeInsert)
+                    .HasColumnName("datetime_insert")
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("'CURRENT_TIMESTAMP'");
+
                 entity.Property(e => e.EventType)
                     .HasColumnName("event_type")
                     .HasColumnType("varchar(50)");
@@ -240,16 +246,16 @@ namespace WebApi10Min.Models
                     .HasColumnName("message")
                     .HasColumnType("longtext");
 
+                entity.Property(e => e.Url)
+                    .HasColumnName("url")
+                    .HasColumnType("varchar(50)");
+
                 entity.Property(e => e.User)
                     .HasColumnName("user")
                     .HasColumnType("varchar(50)");
 
                 entity.Property(e => e.UserIp)
                     .HasColumnName("user_ip")
-                    .HasColumnType("varchar(50)");
-
-                entity.Property(e => e.Url)
-                    .HasColumnName("url")
                     .HasColumnType("varchar(50)");
             });
 
@@ -335,6 +341,24 @@ namespace WebApi10Min.Models
                     .IsRequired()
                     .HasColumnName("nome_ufficio")
                     .HasColumnType("varchar(100)");
+            });
+
+            modelBuilder.Entity<UserSubscribe>(entity =>
+            {
+                entity.ToTable("user_subscribe");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("ID")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.DocumentId)
+                    .HasColumnName("document_id")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.UserId)
+                    .IsRequired()
+                    .HasColumnName("user_id")
+                    .HasColumnType("varchar(128)");
             });
         }
     }

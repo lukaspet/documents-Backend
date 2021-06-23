@@ -19,6 +19,11 @@ using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using System.IO;
 using Microsoft.AspNetCore.Http;
+using Quartz;
+using Quartz.Impl;
+using Quartz.Spi;
+using WebApi10Min.Helpers.Schedulers;
+using WebApi10Min.Helpers.Email;
 
 namespace WebApi10Min
 {
@@ -34,6 +39,21 @@ namespace WebApi10Min
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add Quartz services
+            services.AddSingleton<IJobFactory, SingletonJobFactory>();
+            services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();
+            services.AddHostedService<QuartzHostedService>();
+
+            // Add our job
+            services.AddSingleton<EmailJob>();
+            services.AddSingleton(new JobSchedule(
+                jobType: typeof(EmailJob),
+                cronExpression: "0 0 8 ? * MON")); // run every week on monday at 8:00
+                // cronExpression: "0/5 * * * * ?"));
+
+            services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
+            services.AddTransient<IMailService, MailService>();
+
             services.AddDbContext<MyDbContext>(options =>
                options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -59,13 +79,11 @@ namespace WebApi10Min
                         ValidateIssuer = true,
                         ValidateAudience = true,
                         ValidateLifetime = true,
-                        //ValidIssuer = "http://10.1.3.30:59695/",
-                        ValidIssuer = "http://localhost:59695/",
-                        //ValidIssuer = "http://10.1.100.50:59695/",
+                        //ValidIssuer = "http://localhost:59695/",
+                        ValidIssuer = "http://10.1.100.50:59695/",
                         ClockSkew = TimeSpan.Zero,
-                        //ValidAudience = "http://10.1.3.30:59695/",
-                        ValidAudience = "http://localhost:59695/",
-                        //ValidAudience = "http://10.1.100.50:59695/",
+                        //ValidAudience = "http://localhost:59695/",
+                        ValidAudience = "http://10.1.100.50:59695/",
                     };
                 });
             services.AddCors(options => { options.AddPolicy("AllowAllOrigins", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials().WithExposedHeaders("X-Pagination")); });
@@ -103,7 +121,7 @@ namespace WebApi10Min
             app.UseAuthentication();
             //app.UseAuthorization();
             app.UseHttpsRedirection();
-            app.UseMvc();
+            app.UseMvc();          
         }
     }
 }

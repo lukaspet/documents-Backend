@@ -18,7 +18,6 @@ namespace WebApi10Min
         }
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-               //  .UseUrls("http://10.1.3.30:59695;http://0.0.0.0:59695")
                 .UseStartup<Startup>();
     }
 }
